@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.IO;
 using System.Numerics;
 
@@ -75,7 +77,7 @@ namespace CollectionsMasterConsoleUI
 
             Console.WriteLine("\n************Start Lists***************\n");
 
-            var integerList = new List<int>(51);
+            var integerList = new List<int>();
             Console.WriteLine($"The starting capacity of this list is: {integerList.Capacity}\n");
 
             Populater(integerList);
@@ -109,13 +111,17 @@ namespace CollectionsMasterConsoleUI
             Console.WriteLine("-------------------");
 
             Console.WriteLine("All Numbers:");
-            //UNCOMMENT this method to print out your numbers from arrays or lists
-            //NumberPrinter();
+            
+            NumberPrinter(integerList);
             Console.WriteLine("-------------------");
 
 
             //TODO: Create a method that will remove all odd numbers from the list then print results
+            
             Console.WriteLine("Evens Only!!");
+          
+            OddKiller(integerList);                    
+
 
             Console.WriteLine("------------------");
 
@@ -158,7 +164,19 @@ namespace CollectionsMasterConsoleUI
 
         private static void OddKiller(List<int> numberList)
         {
+            List<int> evens = new List<int>();
 
+            for (int i = 1; i < numberList.Count; i++)
+            {
+                if (numberList[i] % 2 == 0)
+                {
+                    evens.Add(i);
+                }
+                Console.WriteLine(evens);
+                Console.WriteLine(  );
+                Console.WriteLine(SortedList.evens);
+                
+            }
         }
 
         private static void NumberChecker(List<int> numberList, int searchNumber)
@@ -170,9 +188,9 @@ namespace CollectionsMasterConsoleUI
         {
             Random rng = new Random();
 
-            for (int i = 0; i < 51; i++)
+            for (int i = 0; i < 52; i++)
             {
-                numberList[i] = rng.Next(0,50);
+                numberList[i] = rng.Next(1,50);
             }
         }
 
