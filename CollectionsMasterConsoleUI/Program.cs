@@ -10,25 +10,21 @@ namespace CollectionsMasterConsoleUI
 
         static void Main(string[] args)
         {
-            //Call Methods Here, in this supposed order. added tasks not included in original 
-            //Supposed Order
-
             int[] integerArray = new int[50];
             Populater(integerArray);
-            //foreach (var item in integerArray)
-            //{
-            //    Console.WriteLine(item);
-            //}
 
-            Console.WriteLine($"The first number of the array is {integerArray[0]}");
+            Console.WriteLine("\n************Start Arrays***************\n");
+
+            Console.WriteLine($"The first number of the array is: {integerArray[0]}");
             Console.WriteLine();
-            Console.WriteLine($"The last number of the array is {integerArray[^1]}");
+            Console.WriteLine($"The last number of the array is: {integerArray[^1]}");
+            Console.WriteLine();
 
             Console.WriteLine("-------------------");
             Console.WriteLine("All Numbers Original");
             Console.WriteLine("-------------------");
 
-            NumberPrinter(integerArray);            
+            NumberPrinter(integerArray);
 
             Console.WriteLine("-------------------");
             Console.WriteLine("All Numbers Reversed");
@@ -40,71 +36,63 @@ namespace CollectionsMasterConsoleUI
                 Console.WriteLine(item);
             }
 
-            //Reverse Custom
             Console.WriteLine("-------------------");
             Console.WriteLine("REVERSE CUSTOM");
             Console.WriteLine("-------------------");
-           
+
             ReverseArray(integerArray);
             foreach (var item in integerArray)
             {
                 Console.WriteLine(item);
             }
 
-
-            //Multiple of 3 = 0
+            //Multiple of 3 = 0 // the method for this doesn't work yet. 
             Console.WriteLine("-------------------");
             Console.WriteLine("Multiple of 3 = 0");
             Console.WriteLine("-------------------");
 
+            ThreeKiller(integerArray);       
+            foreach (var item in integerArray)
+            {
+                Console.WriteLine(item);
+            }
 
-            //Sorted Numbers
             Console.WriteLine("-------------------");
             Console.WriteLine("Sorted Numbers");
             Console.WriteLine("-------------------");
-            // line below only one or other code needed to properly function?
+
             Array.Sort(integerArray);
-
-            // First number of an array?
-                //there was no heading for this but it was a task? add at end if time?
-
-            // Last number of an array?
-               //there was no heading for this but it was a task? add at end if time?   
-
-            // end arrays
+            foreach (var item in integerArray)
+            {
+                Console.WriteLine(item);
+            }
+                        
             Console.WriteLine("-------------------");
-            Console.WriteLine("\"\\n************End Arrays*************** \\n\"");
+            Console.WriteLine("\n************End Arrays***************\n");
             Console.WriteLine("-------------------");
 
             Console.WriteLine();
 
+            Console.WriteLine("\n************Start Lists***************\n");
 
-            //Start Lists
+            var integerList = new List<int>(51);
+            Console.WriteLine($"The starting capacity of this list is: {integerList.Capacity}\n");
+
+            Populater(integerList);
+
+            Console.WriteLine($"The current capacity of this list is: {integerList.Capacity}\n");
+
 
             //What number will you search for in the number list?
             //all numbers
             //evens only
             //sorted evens
 
-
-            #region Arrays                      
-
-
-
-            //   NumberPrinter(integerArray);  //handy but not sure where it should go?
-
+            #region Arrays                    
 
             #endregion
 
             #region Lists
-            Console.WriteLine("************Start Lists**************");
-
-            /*   Set Up   */
-            //TODO: Create an integer List
-
-
-            //TODO: Print the capacity of the list to the console
-
 
             //TODO: Populate the List with 50 random numbers between 0 and 50 you will need a method for this            
 
@@ -146,16 +134,26 @@ namespace CollectionsMasterConsoleUI
         }
 
         ////////////////Main Method Break/////////////////  
-        
+
         private static void ThreeKiller(int[] numbers)
         {
-            foreach (var item in numbers)
+            for (int i = 0; i < numbers.Length; i++)
             {
-                if (item % 3 == 0)
+                foreach (var item in numbers)
                 {
-                    numbers[Array.IndexOf(numbers,(item % 3 == 0))] = 0; // not sure if this works? // must be an easier way??
+                    if (item % 3 == 0)
+                    {
+                       // intem * 0;   ////numbers.SetValue(0) ? 
+                    }
                 }
             }
+            //foreach (var item in numbers)
+            //{
+            //    if (item % 3 == 0)
+            //    {
+            //        numbers[Array.IndexOf(numbers,(item % 3 == 0))] = 0; // not sure if this works? // must be an easier way??
+            //    }
+            //}
         }
 
         private static void OddKiller(List<int> numberList)
@@ -168,10 +166,14 @@ namespace CollectionsMasterConsoleUI
 
         }
 
-        private static void ListPopulater(List<int> numberList)
+        private static void Populater(List<int> numberList)  //0-50
         {
             Random rng = new Random();
 
+            for (int i = 0; i < 51; i++)
+            {
+                numberList[i] = rng.Next(0,50);
+            }
         }
 
         private static void Populater(int[] numbers)
@@ -182,14 +184,12 @@ namespace CollectionsMasterConsoleUI
             {
                 numbers[i] = rng.Next(1, 51);
             }
-            Console.WriteLine(numbers[1]);
-            Console.WriteLine(numbers[^1]);
         }
 
         private static void ReverseArray(int[] array)
         {
             int[] arr = new int[50];
-            for (int i = arr.Length - 1; i > 0; i--)
+            for (int i = arr.Length - 50; i > 0; i--)  //why ido i need -50 to get rid of the zeros?
             {
                 Console.WriteLine(arr[i]);
             }
